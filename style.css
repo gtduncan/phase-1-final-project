@@ -2,15 +2,15 @@ html, body
 {
     margin:0px;
     padding:0px;
-    background-color:#282828	
+    background-image: url('assets/9450257.png');
+    background-color:#282828;
 }
 
 #top-page
 {
-    background-color: #7e7e7e;
-    background-image: url('assets/shapelined-_JBKdviweXI-unsplash.jpg');
+    background-color:#282828;
     margin:auto;
-    height:225px;
+    height:175px;
     width: 100%;
     position: absolute;
     opacity: 100%;
@@ -46,42 +46,57 @@ html, body
 {
     position: relative;
     left: 94%;
-    bottom: 115%;
+    bottom: 110%;
     width: 40px;
     height: 40px;
     cursor: pointer;
+    transition: transform 0.4s;
 }
 
-#container
+#hamburger-button:hover
+{
+    transform:scale(1.05);
+}
+
+#generator-container
 {
     display: flex;
     margin: auto;
     position: fixed;
     height: 200px;
-    width: 100%;
-    bottom:375px;
+    width: 28%;
+    bottom:260px;
     flex-grow: 1;
+    flex-direction: column;
     justify-content: center;
 }
 
 .bottom-divs
 {
     color: #f1f1f1;
-    background-color: #7e7e7e;
+    background-color:#282828;
     font-size: 20px;
-    margin:70px;
+    margin:30px;
+    margin-bottom:70px;
+    margin-top: 70px;
     padding:20px;
     border-radius: 10px;
     transition: all 0.5s;
     cursor: pointer;
     font-family: "Lato", sans-serif;
+    transition: transform 0.4s;
+}
+
+.bottom-divs:hover
+{
+    transform:scale(1.05);
 }
 
 .bottom-divs span {
     cursor: pointer;
     display: inline-block;
     position: relative;
-    transition: 0.5s;
+    transition: 0.4s;
   }
   
 .bottom-divs span:after {
@@ -90,7 +105,7 @@ html, body
     opacity: 0;
     top: 0;
     right: -20px;
-    transition: 0.5s;
+    transition: 0.4s;
   }
   
 .bottom-divs:hover span {
@@ -102,3 +117,107 @@ html, body
     opacity: 1;
     right: 0;
   }
+
+  #info-container
+{
+      display: flex;
+      margin: auto;
+      position: absolute;
+      height: 400px;
+      width: 32%;
+      right:525px;
+      bottom:120px;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: center;
+      background-color:#282828;
+      border-radius: 10px;
+      visibility: hidden;
+}
+
+
+.display-divs
+{
+    position: relative;
+    width:88%;
+    height:42%;
+    left:0;
+    margin:auto;
+    background-color:#4a4a4a;
+    color:white;
+    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    visibility: hidden;
+    text-align: center;
+    overflow: scroll; 
+    display: inline-block;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius: 10px;
+}
+
+#show-header
+{
+    font-weight: bold;
+    font-size: 20px;
+    color:white;
+    text-decoration: none;
+    transition: transform 0.4s;
+}
+
+#show-header:hover {
+    transform:scale(1.05);
+}
+
+#show-desc
+{
+    position: relative;
+    bottom: 20px;
+    font-size: 12px;
+}
+
+#show-heart
+{
+    padding-left:15px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+#show-heart:hover {
+    transform:scale(1.1);
+}
+
+#header-container
+{
+    display:flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+    text-align:center;
+    justify-content: center;
+}
+
+#favorites-container
+{
+      display: flex;
+      margin: auto;
+      position: absolute;
+      height: 400px;
+      width: 32%;
+      right:50px;
+      bottom:120px;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: center;
+      background-color:#282828;
+      border-radius: 10px;
+}
+
+#favorites-display-container
+{
+    width:88%;
+    height:42%;
+    background-color:#4a4a4a;
+    color:white;
+    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+}
+
