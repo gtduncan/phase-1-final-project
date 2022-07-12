@@ -8,15 +8,18 @@ html, body
 #top-page
 {
     background-color: #7e7e7e;
+    background-image: url('assets/shapelined-_JBKdviweXI-unsplash.jpg');
     margin:auto;
     height:225px;
     width: 100%;
     position: absolute;
+    opacity: 100%;
+    z-index: 1;
     
 }
 #title
 {
-    position: absolute;
+    position: relative;
     bottom: 35px;
     left: 30px;
     width:30%;
@@ -24,24 +27,36 @@ html, body
     color:white;
     font-weight: 550;
     font-size: 50px;
+    z-index:2;
 }
 
 #description
 {
-    position: absolute;
-    bottom: 10px;
+    position: relative;
+    bottom: 70px;
     left: 30px;
     width:40%;
-    font-family: "Lato", sans-serif;
+    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
     color:white;
     font-weight: 300;
+    z-index:2;
+}
+
+#hamburger-button
+{
+    position: relative;
+    left: 94%;
+    bottom: 115%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 #container
 {
     display: flex;
-    margin:auto;
-    position: absolute;
+    margin: auto;
+    position: fixed;
     height: 200px;
     width: 100%;
     bottom:375px;
