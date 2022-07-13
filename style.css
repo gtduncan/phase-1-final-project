@@ -132,7 +132,7 @@ html, body
       justify-content: center;
       background-color:#282828;
       border-radius: 10px;
-      visibility: hidden;
+
 }
 
 
@@ -158,7 +158,7 @@ html, body
 #show-header
 {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.5vw;
     color:white;
     text-decoration: none;
     transition: transform 0.4s;
@@ -186,7 +186,7 @@ html, body
     transform:scale(1.1);
 }
 
-#header-container
+#show-header-container
 {
     display:flex;
     margin: auto;
@@ -200,13 +200,12 @@ html, body
 {
       display: flex;
       margin: auto;
-      position: absolute;
+      position: relative;
       height: 400px;
       width: 32%;
-      right:50px;
-      bottom:120px;
+      left:410px;
+      top:244px;
       flex-grow: 1;
-      flex-direction: column;
       justify-content: center;
       background-color:#282828;
       border-radius: 10px;
@@ -214,10 +213,81 @@ html, body
 
 #favorites-display-container
 {
-    width:88%;
-    height:42%;
-    background-color:#4a4a4a;
+    width:90%;
+    height:90%;
+    border-radius: 10px;
     color:white;
+    text-align: center;
+    margin: auto;
+    background-color: #4a4a4a;
     font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
 }
 
+#drink-header-container
+{
+    display:flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#drink-heart
+{
+    padding-left:15px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+#drink-heart:hover {
+    transform:scale(1.1);
+}
+
+#drink-header
+{
+    font-weight: bold;
+    font-size: 20px;
+    color:white;
+    text-decoration: none;
+    transition: transform 0.4s;
+}
+
+#drink-header:hover {
+    transform:scale(1.05);
+}
+
+#drink-instructions
+{
+    position: relative;
+    font-size: 12px;
+}
+
+#drink-ingredients
+{
+    position: relative;
+    text-align:left;
+    bottom: 10px;
+    font-size: 12px;
+}
+
+#favorite-list
+{
+    font-size: 12px;
+    text-align:left;
+    
+}
+
+.fav-link
+{
+    color:white;
+    text-decoration: none;
+    transition: transform 0.4s;
+}
+
+.fav-link:hover
+{
+    transform:scale(1.2);
+}
