@@ -1,7 +1,8 @@
-currentShow = {};
-favorites = [];
-currentDrink = [];
-showHeartFav = false;
+let currentShow = {};
+let favorites = [];
+let currentDrink = [];
+let showHeartFav = false;
+let drinkHeartFav = false;
 const showPicker = document.querySelector('#show-picker');
 const showHeader = document.querySelector('#show-header');
 const showHeart = document.querySelector('#show-heart');
@@ -9,6 +10,11 @@ const drinkPicker = document.querySelector('#drink-picker');
 const drinkHeader = document.querySelector('#drink-header')
 const drinkHeart = document.querySelector('#drink-heart');
 const showFavoriteList = document.querySelector('#show-favorite-list')
+const drinkFavoriteList = document.querySelector('#drink-favorite-list')
+const showFavoritesHeader = document.querySelector('#show-favorites')
+const drinkFavoritesHeader = document.querySelector('#drink-favorites')
+
+
 
 const getShows = async () => {
     // make this no longer hardcoded, access all shows, get #, then random from that #
@@ -33,11 +39,7 @@ const populateShowDisplay = async () => {
     currentShow = await getShows();
     currentShow.id = ''
     let editedDescription = currentShow.summary
-    for(let i=0;i<replaceTags.length;i++)
-    {
-        editedDescription = editedDescription.replace(replaceTags[i], '')
-    }
-    // change to forEach
+    replaceTags.forEach(element => editedDescription = editedDescription.replace(element, ''))
     showHeader.innerText = currentShow.name;
     showHeader.href = currentShow.url;
     showDesc.innerText = editedDescription;
@@ -75,51 +77,92 @@ const populateDrinkDisplay = async () => {
         }
     }
     drinkDisplay.style.visibility = 'visible';
+    drinkHeartFav = false;
 }
 
 const populateFavoriteDisplay = async () => 
 {
     showFavoriteList.innerHTML = ''
+    drinkFavoriteList.innerHTML = ''
     const req = await fetch('http://localhost:3000/favorites');
     const res = await req.json();
     console.log(res)
     for(let i=0; i<res.length;i++)
     {
-        const favorite = document.createElement('li');
-        const favoriteLink = document.createElement('a');
-        favoriteLink.innerText = res[i].name;
-        favoriteLink.href = res[i].url;
-        favoriteLink.className = 'fav-link';
-        showFavoriteList.append(favorite);
-        favorite.append(favoriteLink);
+        if(!res[i]['idDrink'])
+        {
+            const favorite = document.createElement('li');
+            const favoriteLink = document.createElement('a');
+            favoriteLink.innerText = res[i].name;
+            favoriteLink.href = res[i].url;
+            favoriteLink.className = 'fav-link';
+            favoriteLink.target = "blank";
+            showFavoriteList.append(favorite);
+            favorite.append(favoriteLink);
+        }
+        else if(res[i]['idDrink'])
+        {
+            const favorite = document.createElement('li');
+            const favoriteLink = document.createElement('a');
+            favoriteLink.innerText = res[i].strDrink;
+            favoriteLink.href = res[i].strDrinkThumb;
+            favoriteLink.className = 'fav-link';
+            favoriteLink.target = "blank";
+            drinkFavoriteList.append(favorite);
+            favorite.append(favoriteLink);
+        }
     }
 }
 
-const favoriteItem = async (heart, obj) => {
+const favoriteShow = async (heart, obj) => {
     heart.innerHTML = '&#x2764';
     heart.style.color = 'red';
-    const req1 = await fetch('http://localhost:3000/favorites', {
+    const req = await fetch('http://localhost:3000/favorites', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(obj)
     })
-    const res1 = await req1.json();
-    console.log(res1);
+    const res = await req.json();
+    console.log(res);
     const favorite = document.createElement('li');
     const favoriteLink = document.createElement('a');
-    favoriteLink.innerText = res1.name;
-    favoriteLink.href = res1.url;
+    favoriteLink.innerText = res.name;
+    favoriteLink.href = res.url;
     favoriteLink.className = 'fav-link';
     favoriteLink.target = "blank";
     showFavoriteList.append(favorite);
     favorite.append(favoriteLink);
-    favorites.push(res1)
+    favorites.push(res)
     showHeartFav = true;
 }
 
-const unfavoriteItem = async (heart, obj) => {
+const favoriteDrink = async (heart, obj) => {
+    heart.innerHTML = '&#x2764';
+    heart.style.color = 'red';
+    const req = await fetch('http://localhost:3000/favorites', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj['drinks'][0])
+    })
+    const res = await req.json();
+    console.log(res);
+    const favorite = document.createElement('li');
+    const favoriteLink = document.createElement('a');
+    favoriteLink.innerText = res.strDrink;
+    favoriteLink.href = res.strDrinkThumb;
+    favoriteLink.className = 'fav-link';
+    favoriteLink.target = "blank";
+    drinkFavoriteList.append(favorite);
+    favorite.append(favoriteLink);
+    favorites.push(res);
+    drinkHeartFav = true;
+}
+
+const unfavoriteItem = async (heart) => {
     heart.innerHTML = '&#x2661';
     heart.style.color = 'white';
     const req = await fetch(`http://localhost:3000/favorites/${favorites[favorites.length-1].id}`, {
@@ -130,7 +173,6 @@ const unfavoriteItem = async (heart, obj) => {
          })
     const res = await req.json()
     console.log(res)
-    showHeartFav = false;
     populateFavoriteDisplay();
 }
 
@@ -141,17 +183,27 @@ showHeart.addEventListener('click', () =>
 {
     if(showHeartFav == false)
     {
-        favoriteItem(showHeart, currentShow)
+        favoriteShow(showHeart, currentShow)
+        
     }
-    if(showHeartFav == true)
+    else if(showHeartFav == true)
     {
-        unfavoriteItem(showHeart, currentShow)
+        unfavoriteItem(showHeart, showHeartFav)
+        showHeartFav=false;
     }
 });
 
 drinkHeart.addEventListener('click', () =>
 {
-    favoriteItem(drinkHeart)
+    if(drinkHeartFav == false)
+    {
+        favoriteDrink(drinkHeart, currentDrink)
+    }
+    else if(drinkHeartFav == true)
+    {
+        unfavoriteItem(drinkHeart, drinkHeartFav)
+        drinkHeartFav=false;
+    }
 });
 
 populateFavoriteDisplay();

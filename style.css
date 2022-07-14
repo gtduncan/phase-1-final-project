@@ -4,6 +4,9 @@ html, body
     padding:0px;
     background-image: url('assets/9450257.png');
     background-color:#282828;
+    overflow-y: clip;
+    overflow-x: scroll;
+    z-index: 1;
 }
 
 #top-page
@@ -19,34 +22,34 @@ html, body
 }
 #title
 {
-    position: relative;
-    bottom: 35px;
+    position: fixed;
+    bottom: 635px;
     left: 30px;
     width:30%;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     color:white;
     font-weight: 550;
     font-size: 50px;
-    z-index:2;
+    min-width:400px;
 }
 
 #description
 {
-    position: relative;
-    bottom: 70px;
+    position: fixed;
+    bottom: 590px;
     left: 30px;
     width:40%;
-    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     color:white;
     font-weight: 300;
-    z-index:2;
+    min-width:400px;
 }
 
 #hamburger-button
 {
-    position: relative;
+    position: fixed;
     left: 94%;
-    bottom: 110%;
+    bottom: 90%;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -79,12 +82,13 @@ html, body
     margin:30px;
     margin-bottom:70px;
     margin-top: 70px;
-    padding:20px;
+    padding:15px;
     border-radius: 10px;
     transition: all 0.5s;
     cursor: pointer;
-    font-family: "Lato", sans-serif;
+    font-family: "Poppins", sans-serif;
     transition: transform 0.4s;
+    min-width: 175px;
 }
 
 .bottom-divs:hover
@@ -122,17 +126,18 @@ html, body
 {
       display: flex;
       margin: auto;
-      position: absolute;
+      position: fixed;
       height: 400px;
       width: 32%;
-      right:525px;
-      bottom:120px;
+      left: 450px;
+      top:220px;
       flex-grow: 1;
       flex-direction: column;
       justify-content: center;
       background-color:#282828;
       border-radius: 10px;
-
+      padding-left:5px;
+      padding-right:5px;
 }
 
 
@@ -145,7 +150,7 @@ html, body
     margin:auto;
     background-color:#4a4a4a;
     color:white;
-    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+    font-family: "Poppins", sans-serif;
     visibility: hidden;
     text-align: center;
     overflow: scroll; 
@@ -155,16 +160,26 @@ html, body
     border-radius: 10px;
 }
 
-#show-header
+.header-container
+{
+    display:flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: center;
+    text-align:center;
+    justify-content: center;
+}
+
+.header
 {
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 20px;
     color:white;
     text-decoration: none;
     transition: transform 0.4s;
 }
 
-#show-header:hover {
+.header:hover {
     transform:scale(1.05);
 }
 
@@ -175,88 +190,15 @@ html, body
     font-size: 12px;
 }
 
-#show-heart
+.heart
 {
     padding-left:15px;
     transition: transform 0.3s;
     cursor: pointer;
 }
 
-#show-heart:hover {
+.heart:hover {
     transform:scale(1.1);
-}
-
-#show-header-container
-{
-    display:flex;
-    margin: auto;
-    flex-direction: row;
-    align-items: center;
-    text-align:center;
-    justify-content: center;
-}
-
-#favorites-container
-{
-      display: flex;
-      margin: auto;
-      position: relative;
-      height: 400px;
-      width: 32%;
-      left:410px;
-      top:244px;
-      flex-grow: 1;
-      justify-content: center;
-      background-color:#282828;
-      border-radius: 10px;
-}
-
-#favorites-display-container
-{
-    width:90%;
-    height:90%;
-    border-radius: 10px;
-    color:white;
-    text-align: center;
-    margin: auto;
-    background-color: #4a4a4a;
-    font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-#drink-header-container
-{
-    display:flex;
-    margin: auto;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-
-#drink-heart
-{
-    padding-left:15px;
-    transition: transform 0.3s;
-    cursor: pointer;
-}
-
-#drink-heart:hover {
-    transform:scale(1.1);
-}
-
-#drink-header
-{
-    font-weight: bold;
-    font-size: 20px;
-    color:white;
-    text-decoration: none;
-    transition: transform 0.4s;
-}
-
-#drink-header:hover {
-    transform:scale(1.05);
 }
 
 #drink-instructions
@@ -273,11 +215,40 @@ html, body
     font-size: 12px;
 }
 
+#favorites-container
+{
+      display: flex;
+      margin: auto;
+      position: fixed;
+      height: 400px;
+      width: 32%;
+      left:950px;
+      bottom:143.5px;
+      flex-grow: 1;
+      justify-content: center;
+      background-color:#282828;
+      border-radius: 10px;
+}
+
+#favorites-display-container
+{
+    width:90%;
+    height:90%;
+    border-radius: 10px;
+    color:white;
+    text-align: center;
+    margin: auto;
+    background-color: #4a4a4a;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    overflow: scroll; 
+}
+
 .favorite-list
 {
     font-size: 12px;
     text-align:left;
-    
 }
 
 .favorite-list > li:hover
@@ -300,13 +271,18 @@ html, body
 #show-favorites
 {
     font-size:16px;
-    text-align:left;
-    right:10px;
 }
 
 #drink-favorites
 {
     font-size:16px;
-    text-align:left;
 
+}
+
+#show-genre
+{
+    position: relative;
+    width:25%;
+    left:35px;
+    bottom:60px;
 }
