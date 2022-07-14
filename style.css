@@ -273,21 +273,40 @@ html, body
     font-size: 12px;
 }
 
-#favorite-list
+.favorite-list
 {
     font-size: 12px;
     text-align:left;
     
 }
 
+.favorite-list > li:hover
+{
+    transform:scale(1.02); 
+}
+
+.favorite-list > li
+{
+    transition: transform 0.4s;
+}
+
+
 .fav-link
 {
     color:white;
     text-decoration: none;
-    transition: transform 0.4s;
 }
 
-.fav-link:hover
+#show-favorites
 {
-    transform:scale(1.2);
+    font-size:16px;
+    text-align:left;
+    right:10px;
+}
+
+#drink-favorites
+{
+    font-size:16px;
+    text-align:left;
+
 }
