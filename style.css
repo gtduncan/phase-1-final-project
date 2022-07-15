@@ -177,6 +177,7 @@ html, body
     color:white;
     text-decoration: none;
     transition: transform 0.4s;
+    white-space: none;
 }
 
 .header:hover {
@@ -186,7 +187,7 @@ html, body
 #show-desc
 {
     position: relative;
-    bottom: 20px;
+    bottom: 25px;
     font-size: 12px;
 }
 
@@ -205,6 +206,7 @@ html, body
 {
     position: relative;
     font-size: 12px;
+    bottom:10px;
 }
 
 #drink-ingredients
@@ -212,7 +214,8 @@ html, body
     position: relative;
     text-align:left;
     bottom: 10px;
-    font-size: 12px;
+    font-size: 10px;
+    font-style: italic;
 }
 
 #favorites-container
@@ -279,10 +282,10 @@ html, body
 
 }
 
-#show-genre
+#show-genres
 {
-    position: relative;
-    width:25%;
-    left:35px;
-    bottom:60px;
+    font-style: italic;
+    position:relative;
+    bottom:20px;
+    font-size:10px;
 }

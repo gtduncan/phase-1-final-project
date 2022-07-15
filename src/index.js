@@ -36,6 +36,7 @@ const populateShowDisplay = async () => {
     const replaceTags = ['<p>',  '<b>', '</p>', '</b>', '<i>', '</i>', '<br />', '<br />']
     const showDisplay = document.querySelector('#show-display');
     const showDesc = document.querySelector('#show-desc')
+    const showGenres = document.querySelector('#show-genres')
     currentShow = await getShows();
     currentShow.id = ''
     let editedDescription = currentShow.summary
@@ -43,6 +44,25 @@ const populateShowDisplay = async () => {
     showHeader.innerText = currentShow.name;
     showHeader.href = currentShow.url;
     showDesc.innerText = editedDescription;
+    let genres = currentShow['genres']
+    showGenres.textContent = 'Genre(s): '
+    for(let i=0; i<genres.length; i++)
+    {
+        console.log(genres[i])
+        if(genres.length>=1 && genres[i] !== genres[genres.length-1])
+        {
+            showGenres.textContent += genres[i] += ', '
+        }
+        else if(genres[i] == genres[genres.length-1])
+        {
+            showGenres.textContent +=  genres[i]
+        }
+    }
+    if(genres.length===0)
+    {
+        showGenres.textContent = 'Genres: N/A'
+    }
+    showGenres.textContent = showGenres.textContent.toUpperCase()
     showHeart.innerHTML = '&#x2661';
     showHeart.style.color = 'white';
     showDisplay.style.visibility = 'visible';
